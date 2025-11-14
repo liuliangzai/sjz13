@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>动画效果测试页面</title>
+    <style>
+        body {
+            background-color: #e3f2fd;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 50px 0;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+        }
+        .drag-element {
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+            cursor: move;
+            border-radius: 50%;
+            margin: 20px;
+        }
+        .product-3d {
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+            display: inline-block;
+        }
+        .page-flip-container {
+            width: 300px;
+            height: 200px;
+            margin: 20px auto;
+            position: relative;
+        }
+        .page {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .page1 {
+            background-color: #3498db;
+            color: white;
+        }
+        .page2 {
+            background-color: #e74c3c;
+            color: white;
+        }
+        .page3 {
+            background-color: #2ecc71;
+            color: white;
+        }
+        .lazy-load {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .lazy-load.loaded {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>动画效果测试页面</h1>
+    
+    <div class="test-section">
+        <h2>1. 拖拽元素弹性跟随效果</h2>
+        <div class="drag-element">拖拽我</div>
+        <div class="drag-element">拖拽我</div>
+        <div class="drag-element">拖拽我</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>2. 3D旋转产品展示</h2>
+        <div class="product-3d">
+            <a href="images/full1.jpg" class="gal_item">
+                <img src="images/page2_img1.jpg" alt="" class="lazy-load">
+                <div class="gal_caption">
+                    <time datetime="2014-01-01">15Jan 2014</time>
+                    <div class="gal_title">人物摄影</div>
+                </div>
+            </a>
+        </div>
+        <div class="product-3d">
+            <a href="images/full4.jpg" class="gal_item">
+                <img src="images/page2_img4.jpg" alt="" class="lazy-load">
+                <div class="gal_caption">
+                    <time datetime="2014-02-17">17 Feb 2014</time>
+                    <div class="gal_title">动物世界</div>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>3. 鼠标轨迹粒子效果</h2>
+        <p>移动鼠标查看粒子效果</p>
+    </div>
+    
+    <div class="test-section">
+        <h2>4. 翻书/滑动切换效果</h2>
+        <div class="page-flip-container">
+            <div class="page page1">
+                <h3>第1页</h3>
+                <p>这是第一页内容</p>
+            </div>
+            <div class="page page2">
+                <h3>第2页</h3>
+                <p>这是第二页内容</p>
+            </div>
+            <div class="page page3">
+                <h3>第3页</h3>
+                <p>这是第三页内容</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>5. 懒加载效果</h2>
+        <img src="images/page1_img1.jpg" alt="懒加载图片1" class="lazy-load" width="300">
+        <img src="images/page1_img2.jpg" alt="懒加载图片2" class="lazy-load" width="300">
+        <img src="images/page1_img3.jpg" alt="懒加载图片3" class="lazy-load" width="300">
+        <img src="images/page1_img4.jpg" alt="懒加载图片4" class="lazy-load" width="300">
+        <img src="images/page1_img5.jpg" alt="懒加载图片5" class="lazy-load" width="300">
+        <img src="images/page1_img6.jpg" alt="懒加载图片6" class="lazy-load" width="300">
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/advanced-animations.js"></script>
+    <script src="js/performance-optimizations.js"></script>
+    <script>
+        // 初始化动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('页面加载完成，开始初始化动画效果...');
+            
+            // 测试拖拽元素
+            setTimeout(() => {
+                const dragElements = document.querySelectorAll('.drag-element');
+                if (dragElements.length > 0) {
+                    dragElements.forEach(el => {
+                        el.setAttribute('data-draggable', 'true');
+                    });
+                }
+            }, 100);
+            
+            // 测试翻书效果
+            setTimeout(() => {
+                const pageFlipContainer = document.querySelector('.page-flip-container');
+                if (pageFlipContainer) {
+                    pageFlipContainer.setAttribute('id', 'page-flip-container');
+                }
+            }, 200);
+        });
+    </script>
+</body>
+</html>
